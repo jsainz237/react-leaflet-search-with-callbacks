@@ -15,6 +15,8 @@ type ReactLeafletSearchProps = MapControlProps &
         customProvider?: { search: (value: string) => Promise<any> };
         markerIcon?: Icon;
         popUp?: (i: { latLng: LatLng; info: string | Array<string>; raw: Object }) => JSX.Element;
+        onSearch?: (i: { latLng: LatLng; info: string | Array<string>; raw: Object }) => void;
+        onClose?: () => void;
     };
 
 interface ReactLeafletSearchState {
@@ -88,11 +90,13 @@ export default class ReactLeafletSearch extends MapControl<ReactLeafletSearchPro
 
     removeMarkerHandler() {
         this.setState({ search: false });
+        this.props.onClose ? this.props.onClose() : null;
     }
 
     goToLatLng(latLng: LatLng, info: JSX.Element) {
         this.setState({ search: latLng, info: info }, () => {
             this.flyTo();
+            this.props.onSearch && this.SearchInfo ? this.props.onSearch(this.SearchInfo) : null;
         });
     }
     flyTo() {

@@ -17,6 +17,12 @@ declare type ReactLeafletSearchProps = MapControlProps & SearchControlProps & {
         info: string | Array<string>;
         raw: Object;
     }) => JSX.Element;
+    onSearch?: (i: {
+        latLng: LatLng;
+        info: string | Array<string>;
+        raw: Object;
+    }) => void;
+    onClose?: () => void;
 };
 interface ReactLeafletSearchState {
     search: LatLng | false;
