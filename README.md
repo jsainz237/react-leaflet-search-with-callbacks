@@ -123,6 +123,18 @@ myPopup(SearchInfo) {
 <ReactLeafletSearch position="topleft" popUp={ myPopup }/>
 ```
 
+### Callback Props
+
+`onSearch` and `onClose` props can be provided to trigger callback function after an action
+
+```javascript
+<ReactLeafletSearch
+    ...
+    onSearch={(searchInfo) => myFunction(searchInfo)} // ran after map flies to searched position
+    onClose={() => anotherFunction()} // ran after user closes search
+/>
+```
+
 ### Other props which can be set on the `ReactLeafletSearch` component
 
 Other aspects can be customized as well:
